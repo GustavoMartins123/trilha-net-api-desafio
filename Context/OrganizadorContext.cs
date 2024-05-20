@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TrilhaApiDesafio.Mapping;
 using TrilhaApiDesafio.Models;
 
 namespace TrilhaApiDesafio.Context
@@ -11,5 +12,10 @@ namespace TrilhaApiDesafio.Context
         }
 
         public DbSet<Tarefa> Tarefas { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new TarefaMapping());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
